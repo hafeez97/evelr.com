@@ -12,10 +12,7 @@ function CategorySection({ categoryData }) {
 
   const handleLinkClick = (id) => {
     setActiveLink(id);
-    // onCategorySelect(id);
-    // https://testcodex.com/elevr/public/api/post?page=${nextPage}
     console.log(id);
-    // {{base_url}}post/?category_id=1
   };
   return (
     <section className="py-3">
