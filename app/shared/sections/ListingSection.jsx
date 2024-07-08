@@ -5,12 +5,19 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { fetchListing } from "@/app/shared/services/ListingService";
 
 function ListingSection({ initialListings, initialPage, lastPage }) {
+
   const [listings, setListings] = useState(initialListings);
+  const [PageState, setPageState] = useState(lastPage)
   const [currentPage, setCurrentPage] = useState(initialPage);
   const [loading, setLoading] = useState(false);
 
   const router = useRouter();
   const searchParams = useSearchParams();
+
+  useEffect(() => {
+    console.log(listings, lastPage)
+  }, [listings]);
+
 
   useEffect(() => {
     const params = Object.fromEntries(searchParams.entries());
@@ -26,6 +33,7 @@ function ListingSection({ initialListings, initialPage, lastPage }) {
     setListings((prevListings) =>
         resetListings ? data.posts : [...prevListings, ...data.posts]
     );
+    setPageState(data.last_page)
     setCurrentPage(parseInt(params.page));
     setLoading(false);
   };
@@ -36,7 +44,7 @@ function ListingSection({ initialListings, initialPage, lastPage }) {
     loadListings(params);
     const newSearchParams = new URLSearchParams(params);
     // router.push(`?${newSearchParams.toString()}`, undefined, { shallow: true });
-    router.push(`?${newSearchParams.toString()}`, undefined, {scroll:false,  shallow: true });
+    router.push(`?${newSearchParams.toString()}`, {scroll:false });
   };
 
   return (
@@ -95,7 +103,7 @@ function ListingSection({ initialListings, initialPage, lastPage }) {
           </div>
         </div>
         <div className="listing-btns">
-          {currentPage < lastPage ? (
+          {currentPage < PageState ? (
               <button onClick={loadMoreListings} disabled={loading}>
                 {loading ? "Loading..." : "Load More"}
               </button>

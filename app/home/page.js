@@ -20,6 +20,7 @@ const ListingPage = async ({ searchParams }) => {
                 initialListings={listings}
                 initialPage={parseInt(params.page)}
                 lastPage={lastPage}
+
             />
         </div>
     );
