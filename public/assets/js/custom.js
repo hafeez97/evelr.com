@@ -19,6 +19,7 @@ const PriorityNavScroller = function ({
   buttonLeftSelector: buttonLeftSelector = ".nav-scroller-btn--left",
   buttonRightSelector: buttonRightSelector = ".nav-scroller-btn--right",
   scrollStep: scrollStep = 500,
+                                        // scrollStep: scrollStep = 0,
 } = {}) {
   const navScroller =
     typeof selector === "string" ? document.querySelector(selector) : selector;
@@ -249,150 +250,10 @@ function toggleButtons(clickedButton) {
   });
 }
 
-/////////////// Login OTP Authentication  //////////////////
 
-const inputs = document.querySelectorAll("#login-otp-inputs > input");
-const button = document.querySelector("#login-otp");
 
-window.addEventListener("load", () => inputs[0].focus());
-button.setAttribute("disabled", "disabled");
 
-inputs[0].addEventListener("paste", function (event) {
-  event.preventDefault();
 
-  const pastedValue = (event.clipboardData || window.clipboardData).getData(
-    "text",
-  );
-  const otpLength = inputs.length;
-
-  for (let i = 0; i < otpLength; i++) {
-    if (i < pastedValue.length) {
-      inputs[i].value = pastedValue[i];
-      inputs[i].removeAttribute("disabled");
-      inputs[i].focus;
-    } else {
-      inputs[i].value = ""; // Clear any remaining inputs
-      inputs[i].focus;
-    }
-  }
-});
-
-inputs.forEach((input, index1) => {
-  input.addEventListener("keyup", (e) => {
-    const currentInput = input;
-    const nextInput = input.nextElementSibling;
-    const prevInput = input.previousElementSibling;
-
-    if (currentInput.value.length > 1) {
-      currentInput.value = "";
-      return;
-    }
-
-    if (
-      nextInput &&
-      nextInput.hasAttribute("disabled") &&
-      currentInput.value !== ""
-    ) {
-      nextInput.removeAttribute("disabled");
-      nextInput.focus();
-    }
-
-    if (e.key === "Backspace") {
-      inputs.forEach((input, index2) => {
-        if (index1 <= index2 && prevInput) {
-          input.setAttribute("disabled", true);
-          input.value = "";
-          prevInput.focus();
-        }
-      });
-    }
-
-    button.classList.remove("active");
-    button.setAttribute("disabled", "disabled");
-
-    const inputsNo = inputs.length;
-    if (!inputs[inputsNo - 1].disabled && inputs[inputsNo - 1].value !== "") {
-      button.classList.add("active");
-      button.removeAttribute("disabled");
-
-      return;
-    }
-  });
-});
-
-/////////////// Sign Up OTP Authentication  //////////////////
-
-const inputsSignupOTP = document.querySelectorAll("#signup-otp-inputs > input");
-const buttonSignupOTP = document.querySelector("#signup-otp");
-
-window.addEventListener("load", () => inputsSignupOTP[0].focus());
-buttonSignupOTP.setAttribute("disabled", "disabled");
-
-inputsSignupOTP[0].addEventListener("paste", function (event) {
-  event.preventDefault();
-
-  const pastedValue = (event.clipboardData || window.clipboardData).getData(
-    "text",
-  );
-  const otpLength = inputsSignupOTP.length;
-
-  for (let i = 0; i < otpLength; i++) {
-    if (i < pastedValue.length) {
-      inputsSignupOTP[i].value = pastedValue[i];
-      inputsSignupOTP[i].removeAttribute("disabled");
-      inputsSignupOTP[i].focus;
-    } else {
-      inputsSignupOTP[i].value = ""; // Clear any remaining inputsSignupOTP
-      inputsSignupOTP[i].focus;
-    }
-  }
-});
-
-inputsSignupOTP.forEach((input, index1) => {
-  input.addEventListener("keyup", (e) => {
-    const currentInput = input;
-    const nextInput = input.nextElementSibling;
-    const prevInput = input.previousElementSibling;
-
-    if (currentInput.value.length > 1) {
-      currentInput.value = "";
-      return;
-    }
-
-    if (
-      nextInput &&
-      nextInput.hasAttribute("disabled") &&
-      currentInput.value !== ""
-    ) {
-      nextInput.removeAttribute("disabled");
-      nextInput.focus();
-    }
-
-    if (e.key === "Backspace") {
-      inputsSignupOTP.forEach((input, index2) => {
-        if (index1 <= index2 && prevInput) {
-          input.setAttribute("disabled", true);
-          input.value = "";
-          prevInput.focus();
-        }
-      });
-    }
-
-    buttonSignupOTP.classList.remove("active");
-    buttonSignupOTP.setAttribute("disabled", "disabled");
-
-    const inputsSignupOTPNo = inputsSignupOTP.length;
-    if (
-      !inputsSignupOTP[inputsSignupOTPNo - 1].disabled &&
-      inputsSignupOTP[inputsSignupOTPNo - 1].value !== ""
-    ) {
-      buttonSignupOTP.classList.add("active");
-      buttonSignupOTP.removeAttribute("disabled");
-
-      return;
-    }
-  });
-});
 
 /////////////// Check-in Check-out Hero Section Calender  //////////////////
 
