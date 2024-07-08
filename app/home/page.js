@@ -4,6 +4,7 @@ import SearchSection from "@/app/shared/sections/SearchSection";
 import CategorySection from "@/app/shared/sections/CategorySection";
 import { fetchListing } from "@/app/shared/services/ListingService";
 import { fetchCategories } from "@/app/shared/services/CategoryService";
+import React from "react";
 
 const ListingPage = async ({ searchParams }) => {
     const params = { ...searchParams, page: searchParams.page || 1 };

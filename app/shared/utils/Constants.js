@@ -4,9 +4,14 @@ const CONST = {
         GET: "post?",
         GET_ONE: "post/",
     },
+    AUTH: {
+        LOGIN: "login",
+        REGISTER: "register"
+    },
     CATEGORIES:
         {
             GET: "categories",
-        }
+        },
+
 }
 export default CONST;
