@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { fetchListing } from "@/app/shared/services/ListingService";
+import Link from "next/link";
 
 function ListingSection({ initialListings, initialPage, lastPage }) {
 
@@ -46,14 +47,18 @@ function ListingSection({ initialListings, initialPage, lastPage }) {
     // router.push(`?${newSearchParams.toString()}`, undefined, { shallow: true });
     router.push(`?${newSearchParams.toString()}`, {scroll:false });
   };
+  const routeToDetails = (id) => {
+    router.push(`/listing/${id}`)
+  }
 
   return (
       <section className="listings py-3">
         <div className="container">
           <div className="row">
             {listings.map((listing) => (
+
                 <div key={listing.id} className="col-lg-4 col-md-6 col-12 mb-4">
-                  <div className="card">
+                  <div className="card" onClick={()=>routeToDetails(listing.id)}>
                     <div style={{ height: "100%", overflow: "hidden" }}>
                       <img
                           src={
@@ -99,6 +104,7 @@ function ListingSection({ initialListings, initialPage, lastPage }) {
                     </div>
                   </div>
                 </div>
+
             ))}
           </div>
         </div>
