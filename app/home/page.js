@@ -5,6 +5,7 @@ import CategorySection from "@/app/shared/sections/CategorySection";
 import { fetchListing } from "@/app/shared/services/ListingService";
 import { fetchCategories } from "@/app/shared/services/CategoryService";
 import React from "react";
+import {auth} from "@/auth";
 
 const ListingPage = async ({ searchParams }) => {
     const params = { ...searchParams, page: searchParams.page || 1 };
@@ -15,7 +16,7 @@ const ListingPage = async ({ searchParams }) => {
 
     return (
         <div>
-            <SearchSection />
+            <SearchSection/>
             <CategorySection categoryData={categoryData} />
             <ListingSection
                 initialListings={listings}

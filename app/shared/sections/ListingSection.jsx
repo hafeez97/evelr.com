@@ -1,4 +1,4 @@
-"use client"; // Mark this component as a client component
+"use client";
 
 import { useState, useEffect } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
@@ -14,11 +14,6 @@ function ListingSection({ initialListings, initialPage, lastPage }) {
 
   const router = useRouter();
   const searchParams = useSearchParams();
-
-  useEffect(() => {
-    console.log(listings, lastPage)
-  }, [listings]);
-
 
   useEffect(() => {
     const params = Object.fromEntries(searchParams.entries());

@@ -1,18 +1,16 @@
 "use client"
-import React, {useEffect} from "react";
+import React from "react";
 import Link from "next/link";
-import LoginModal from "@/app/shared/modals/LoginModal";
 import useModalStore from "@/app/shared/stores/useModalStore";
-import SignupModal from "@/app/shared/modals/SignupModal";
+import NavButtons from "@/app/shared/components/NavButtons";
+import NavAuthButtons from "@/app/shared/components/NavAuthButtons";
 
-function Navigation() {
-  const {openSignInModal, openSignUpModal} = useModalStore()
 
+function Navigation({session}) {
+  console.log(session)
 
   return (
       <>
-        {/*<LoginModal/>*/}
-        {/*<SignupModal/>*/}
         <nav className="navbar navbar-expand-lg bg-light py-3">
           <div className="container">
             <Link className="navbar-brand" href="#">
@@ -56,86 +54,9 @@ function Navigation() {
                   </Link>
                 </li>
               </ul>
-              <div className="nav-btns">
-                <button
-                    className="navbar-login-btn"
-                    onClick={openSignInModal}
-                >
-                  Log In
-                </button>
-                <button
-                    className="navbar-signup-btn"
-                    onClick={openSignUpModal}
-                    // type="button"
-                    // data-bs-toggle="modal"
-                    // data-bs-target="#signup-modal"
-                >
-                  Sign Up
-                </button>
-              </div>
-            </div>
-            <div
-                className="offcanvas offcanvas-start d-lg-none"
-                tabIndex={-1}
-                id="offcanvasNavbar"
-                aria-labelledby="offcanvasNavbarLabel"
-            >
-              <div className="offcanvas-header">
-                <a className="navbar-brand" id="offcanvasNavbarLabel" href="#">
-                  <img
-                      src="../assets/images/eve-logo-cropped.gif"
-                      alt="evelr logo"
-                  />
-                </a>
-                <button
-                    type="button"
-                    className="btn-close"
-                    data-bs-dismiss="offcanvas"
-                    aria-label="Close"
-                />
-              </div>
-              <div className="offcanvas-body">
-                <ul className="navbar-nav justify-content-end flex-grow-1 pe-3">
-                  <li className="nav-item">
-                    <a className="nav-link active" aria-current="page" href="#">
-                      Home
-                    </a>
-                  </li>
-                  <li className="nav-item">
-                    <a className="nav-link" href="#">
-                      Messages
-                    </a>
-                  </li>
-                  <li className="nav-item">
-                    <a className="nav-link" href="#">
-                      Notifications
-                    </a>
-                  </li>
-                  <li className="nav-item">
-                    <a className="nav-link" href="#">
-                      Wishlist
-                    </a>
-                  </li>
-                  <div className="row justify-content-between mt-2">
-                    <div className="col-6">
-                      <button
-                          className="navbar-login-btn"
-                          onClick={openSignInModal}
-                      >
-                        Sign In
-                      </button>
-                    </div>
-                    <div className="col-6">
-                      <button
-                          className="navbar-signup-btn"
-                          onClick={openSignUpModal}
-                      >
-                        Sign Up
-                      </button>
-                    </div>
-                  </div>
-                </ul>
-              </div>
+              {
+                session ?<NavAuthButtons session={session} /> :<NavButtons/>
+              }
             </div>
           </div>
         </nav>

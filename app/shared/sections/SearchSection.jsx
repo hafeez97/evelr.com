@@ -11,6 +11,7 @@ const SearchSection = () => {
   const [showCheckInCard, setShowCheckInCard] = useState(false); // Add state for Check-in card
   const [showCheckOutCard, setShowCheckOutCard] = useState(false); // Add state for Check-out card
 
+
   const handleFocusGuestCard = () => setShowGuestCard(true);
   const handleBlurGuestCard = () => setShowGuestCard(false);
 

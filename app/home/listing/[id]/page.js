@@ -8,8 +8,13 @@ const Page = async ({params}) => {
     const data = await fetchPostById(id)
 
 
+
+
     return (
-        <ListingDetailSection detailData={data}/>
+        <div>
+            <ListingDetailSection detailData={data}/>
+        </div>
+
     )
 }
 export default Page

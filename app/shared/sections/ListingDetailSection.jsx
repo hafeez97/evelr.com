@@ -6,10 +6,6 @@ import DateRangeCalender from "@/app/shared/components/DateRangeCalender";
 const ListingDetailSection = ({detailData}) => {
     const postDetails = detailData
 
-    useEffect(() => {
-        console.log(detailData)
-    }, [detailData]);
-
     const increment = (id) => {
         const input = document.getElementById(id);
         input.value = parseInt(input.value) + 1;
