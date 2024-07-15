@@ -11,7 +11,10 @@ const CONST = {
     CATEGORIES:
         {
             GET: "categories",
+            ADD: "categories/create"
         },
-
+    HOST:{
+        GET_POSTS: "post/owner-post/detail"
+    }
 }
 export default CONST;

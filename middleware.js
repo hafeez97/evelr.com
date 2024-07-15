@@ -9,11 +9,14 @@ export function middleware(request) {
         return NextResponse.next();
     }
 
-    // Allow access to the /booking page and its subpaths
+    // Allow access to the except /home path
     if (pathname === '/booking' || pathname.startsWith('/booking')) {
         return NextResponse.next();
     }
     if (pathname === '/host' || pathname.startsWith('/host')) {
+        return NextResponse.next();
+    }
+    if (pathname === '/create-post' || pathname.startsWith('/create-post')) {
         return NextResponse.next();
     }
 

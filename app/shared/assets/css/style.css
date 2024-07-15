@@ -795,6 +795,8 @@
   box-shadow: 0px 0px 10px 0px #0000002e;
   border-radius: 20px;
   padding: 0.8em;
+  max-height: 450px;
+  overflow: scroll;
 }
 .h-dashboard-content-upcoming-guest-list-item,
 .h-dashboard-content-res-list-item,

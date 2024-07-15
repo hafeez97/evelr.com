@@ -6,7 +6,6 @@ import Link from "next/link";
 
 const HostSidebar = () => {
     const pathname = usePathname()
-    console.log(pathname)
     return (
         <aside className="h-dashboard-asidebar col-2">
             <nav className="h-dashboard-asidebar-nav">
