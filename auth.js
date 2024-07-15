@@ -1,10 +1,10 @@
-import NextAuth from "next-auth"
-import Credentials from "next-auth/providers/credentials"
+import NextAuth from "next-auth";
+import CredentialsProvider from "next-auth/providers/credentials";
 
-export const { handlers, signIn, signOut, auth } = NextAuth({
+export const { handlers:{GET , POST}, signIn, signOut, auth } = NextAuth({
     session: { strategy: "jwt" },
     providers: [
-        Credentials({
+        CredentialsProvider({
             name: "Credentials",
             credentials: {
                 email: { label: "Email", type: "email" },
@@ -19,9 +19,9 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
                     body: JSON.stringify(credentials),
                 });
                 const userResponse = await res.json();
+
                 if (!res.ok || !userResponse.response.data) {
-                    // Return null if credentials are invalid
-                    return null;
+                    return userResponse.error;
                 }
                 const user = userResponse.response.data.user;
                 console.log(user);
@@ -30,18 +30,15 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
                     return user;
                 }
                 return null;
-
             },
-
         }),
     ],
     callbacks: {
         async signIn({ user }) {
-            // Check user status or other criteria here
             return user.id && user.status === 1;
         },
         async session({ session, token }) {
-            if (token) {
+            if (token && token.user) {
                 session.user = token.user;
             }
             return session;
@@ -57,5 +54,4 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
     pages: {
         signIn: "/login"
     }
-
-})
+});

@@ -5,10 +5,10 @@ export async function LoginAction(formData){
     await signIn("credentials", {
         email : formData.email,
         password : formData.password,
-        redirect: false,
+        redirectTo: "/",
     }
     )
 }
 export async function LogoutAction(){
-    await signOut()
+    await signOut();
 }

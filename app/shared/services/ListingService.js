@@ -5,7 +5,7 @@ export async function fetchListing(params) {
     const res = await fetch(
         `${CONST.BASE_URL}${CONST.LISTING.GET}${queryString}`,
         {
-            next: { revalidate: 10 }, // optional: caching and revalidation
+            next: { revalidate: 0 }, // optional: caching and revalidation
         },
     );
 

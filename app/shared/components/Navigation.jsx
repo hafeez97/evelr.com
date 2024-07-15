@@ -13,11 +13,11 @@ function Navigation({session}) {
       <>
         <nav className="navbar navbar-expand-lg bg-light py-3">
           <div className="container">
-            <Link className="navbar-brand" href="#">
+            <Link className="navbar-brand" href="/">
               <img
                   width={20}
                   height={20}
-                  src="../assets/images/eve-logo-cropped.gif"
+                  src="/assets/images/eve-logo-cropped.gif"
                   alt="evelr logo"
               />
             </Link>
@@ -34,7 +34,7 @@ function Navigation({session}) {
             <div className="collapse navbar-collapse" id="navbarSupportedContent">
               <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
                 <li className="nav-item">
-                  <Link className="nav-link active" aria-current="page" href="#">
+                  <Link className="nav-link active" aria-current="page" href="/">
                     Home
                   </Link>
                 </li>

@@ -1,18 +1,20 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { Modal } from 'react-bootstrap';
 import { useForm } from 'react-hook-form';
 import useModalStore from "@/app/shared/stores/useModalStore";
 import {LoginAction} from "@/app/shared/actions/loginAction";
+import {error} from "next/dist/build/output/log";
 
 function LoginModal() {
+    const [loading, setLoading] = useState(false)
+
     const { register, handleSubmit, formState: { errors } } = useForm();
     const {isSignInOpen, closeSignInModal} = useModalStore();
 
+
     const onSubmit = async (data) => {
-        await LoginAction("credentials", {
-            email : data.email,
-            password : data.password,
-        });
+        setLoading(true);
+        await LoginAction(data).then(() => {setLoading(false); closeSignInModal()}).catch((error)=>{console.log(error); setLoading(false)})
     }
 
     return (
@@ -22,7 +24,7 @@ function LoginModal() {
                     <Modal.Title>Welcome Back</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    <form onSubmit={handleSubmit(onSubmit)}>
+                    <form>
                             <div className="mb-4">
                                 <input type="email" className="form-control"
                                        placeholder="Email/Phone Number" {...register("email", {required: true})} />
@@ -39,10 +41,8 @@ function LoginModal() {
                                 <a className="forget-pass" href="#">Forget Password?</a>
                             </div>
                             <div className="mb-3">
-                                <button type="submit" className="btn btn-primary">
-
-
-                                    Log In
+                                <button type="submit" className="btn btn-primary" onClick={handleSubmit(onSubmit)}>
+                                    {loading? "Loading..." : "Log in"}
                                 </button>
                             </div>
                             <div className="d-flex justify-content-center text-center">

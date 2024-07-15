@@ -6,7 +6,6 @@ import { fetchListing } from "@/app/shared/services/ListingService";
 import Link from "next/link";
 
 function ListingSection({ initialListings, initialPage, lastPage }) {
-
   const [listings, setListings] = useState(initialListings);
   const [PageState, setPageState] = useState(lastPage)
   const [currentPage, setCurrentPage] = useState(initialPage);
@@ -42,6 +41,8 @@ function ListingSection({ initialListings, initialPage, lastPage }) {
     // router.push(`?${newSearchParams.toString()}`, undefined, { shallow: true });
     router.push(`?${newSearchParams.toString()}`, {scroll:false });
   };
+
+
   const routeToDetails = (id) => {
     router.push(`/listing/${id}`)
   }
