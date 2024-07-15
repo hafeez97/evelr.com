@@ -2,6 +2,7 @@ import React from "react";
 import Script from 'next/script'
 import {auth} from "@/auth"
 import HostHeader from "@/app/shared/components/HostHeader";
+import HostSidebar from "@/app/shared/components/HostSidebar";
 
 const RootLayout = async ({ children }) => {
     const session = await auth()
@@ -10,7 +11,19 @@ const RootLayout = async ({ children }) => {
         <>
             <HostHeader/>
             <main>
-                {children}</main>
+                <section className="h-dashboard py-3">
+                    <div className="container">
+                        <div className="row">
+                            <HostSidebar/>
+                            <div class="h-content col-10">
+                            {children}
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+
+            </main>
             <footer>
                 <div className="container">
                     <div className="footer-end">

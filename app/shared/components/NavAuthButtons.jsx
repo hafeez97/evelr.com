@@ -13,7 +13,7 @@ const NavAuthButtons = ({session}) => {
 
     return (
         <div className="d-flex flex-row justify-content-between">
-            <a className="navbar-login-btn" type="button"> Switch to listing </a>
+            <Link href="/host/dashboard" className="navbar-login-btn" type="button"> Switch to listing </Link>
             <div className="dropdown" onClick={toggleDropdown}>
                 <a
                     className="rounded-circle"

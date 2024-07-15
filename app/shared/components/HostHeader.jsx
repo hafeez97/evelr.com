@@ -14,8 +14,6 @@ const HostHeader = () => {
                                 <Link className="navbar-login-btn" type="button" href="/">
                                     Switch to travelling
                                 </Link>
-
-
                             <div className="dropdown">
                                 <a
                                     className="rounded-circle"
