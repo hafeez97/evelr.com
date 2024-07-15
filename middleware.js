@@ -13,6 +13,9 @@ export function middleware(request) {
     if (pathname === '/booking' || pathname.startsWith('/booking')) {
         return NextResponse.next();
     }
+    if (pathname === '/host' || pathname.startsWith('/host')) {
+        return NextResponse.next();
+    }
 
     // Redirect root path to /home
     if (pathname === '/') {
