@@ -12,8 +12,6 @@ export async function GetAllCategoriesAction() {
 export async function CreateCategoryAction(prevState, formData) {
     console.log("Create Category Action called");
     const category = formData.get('title');
-    console.log(category)
-    return
 
     try {
         const result = await POST(CONST.CATEGORIES.ADD, formData);
