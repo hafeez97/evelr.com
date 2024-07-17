@@ -7,8 +7,6 @@ import Link from "next/link";
 
 const Page = async ({searchParams}) => {
    const data = await GetAllCategoriesAction();
-    const queryString = new URLSearchParams(searchParams).toString();
-    console.log(searchParams)
 
     return (
        <>
@@ -23,13 +21,13 @@ const Page = async ({searchParams}) => {
                        <div className="container">
                            <div className="row justify-content-between">
                                <div className="col-sm-6 col-md-5 col-lg-4 col-xl-3 d-flex justify-content-start">
-                                   <a href="" className="save-exit-btn">
+                                   <Link href="/" className="save-exit-btn">
                                        Exit
-                                   </a>
+                                   </Link>
                                </div>
                                <div className="col-sm-6 col-md-5 col-lg-4 col-xl-3 d-flex justify-content-end">
                                    <Link
-                                       href={`/create-post/place-location${queryString ? `?${queryString}` : ''}`}
+                                       href="/create-post/location"
                                        className="continue-btn"
                                    >
                                        Continue
@@ -38,7 +36,6 @@ const Page = async ({searchParams}) => {
                            </div>
                        </div>
                    </section>
-
                </div>
            </section>
        </>

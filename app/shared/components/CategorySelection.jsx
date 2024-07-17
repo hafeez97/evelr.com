@@ -10,11 +10,11 @@ const CategorySelection = ({ categories }) => {
         setActiveCategory(category);
 
         // Construct the query string manually
-        const query = new URLSearchParams(window.location.search);
-        query.set('category_id', category);
-
-        // Use router.replace instead of router.push to avoid full page reload
-        router.replace(`${window.location.pathname}?${query.toString()}`);
+        // const query = new URLSearchParams(window.location.search);
+        // query.set('category_id', category);
+        //
+        // // Use router.replace instead of router.push to avoid full page reload
+        // router.replace(`${window.location.pathname}?${query.toString()}`);
     };
 
     useEffect(() => {

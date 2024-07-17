@@ -4,14 +4,14 @@ import { CreateCategoryAction } from "@/app/shared/actions/categoriesAction";
 import {useFormState} from "react-dom"; // Updated to use `useFormStatus`
 
 const CategoryCustomAddInput = () => {
-    const [state, formAction] = useFormState(CreateCategoryAction, '/create-category');
+    const [state, formAction] = useFormState(CreateCategoryAction, '');
 
-    // useEffect(() => {
-    //     console.log(state);
-    //     if (state.success) {
-    //         console.log('Category Created');
-    //     }
-    // }, [state]);
+    useEffect(() => {
+        console.log(state);
+        // if (state.success) {
+        //     console.log('Category Created');
+        // }
+    }, [state]);
 
     return (
         <div className="col-12 text-center">
@@ -23,8 +23,8 @@ const CategoryCustomAddInput = () => {
                     name="title"
                     id="title"
                 />
-                {/*<input type="submit" hidden />*/}
-                <button hidden type="submit">Add Category</button>
+                <input type="submit" hidden />
+                {/*<button type="submit">Add Category</button>*/}
             </form>
         </div>
     );
