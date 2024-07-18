@@ -4,11 +4,11 @@ import LocationForm from "@/app/shared/forms/LocationForm";
 import {GetAllCountriesAction} from "@/app/shared/actions/locationAction";
 
 const Page = async () => {
-    // const countries = await GetAllCountriesAction();
+    const countries = await GetAllCountriesAction();
 
     return (
         <>
-                {/*<LocationForm countries={countries} />*/}
+                <LocationForm countries={countries.countries} />
             <section className="save-cont-btns-sec">
                 <div className="container">
                     <div className="row justify-content-between">

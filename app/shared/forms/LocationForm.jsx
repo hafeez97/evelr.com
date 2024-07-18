@@ -69,7 +69,7 @@ const LocationForm = ({countries}) => {
                                         <option value="0">
                                             Select Country
                                         </option>
-                                        {countries.countries.map((country) => (
+                                        {countries.map((country) => (
                                             <option key={country.id} value={country.id}>
                                                 {country.name}
                                             </option>
