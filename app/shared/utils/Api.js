@@ -1,3 +1,5 @@
+"use server"
+
 import { auth } from "@/auth";
 import CONST from "@/app/shared/utils/Constants";
 
@@ -63,6 +65,7 @@ export const GET = async (url, params = {}) => {
         }
 
         const responseData = isJSON ? await response.json() : await response.text();
+
 
         // Extracting the nested data
         const nestedData = responseData?.data?.response?.data || responseData;
