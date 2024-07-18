@@ -4,10 +4,8 @@ import CategoryCustomAddInput from "@/app/shared/components/CategoryCustomAddInp
 import {GetAllCategoriesAction} from "@/app/shared/actions/categoriesAction";
 import Link from "next/link";
 
-
-const Page = async ({searchParams}) => {
+const Page = async () => {
    const data = await GetAllCategoriesAction();
-
     return (
        <>
            <section className="listing-category">

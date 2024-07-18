@@ -1,30 +1,21 @@
 "use client"
 import React, { useEffect, useState } from 'react';
-import { useRouter } from 'next/navigation'; // Updated import to use the new app router
+import useFormStore from "@/app/shared/stores/useFormStore";
+
 
 const CategorySelection = ({ categories }) => {
     const [activeCategory, setActiveCategory] = useState('');
-    const router = useRouter();
+    const { formData,setFormData } = useFormStore();
 
     const listingCategoryActive = (category) => {
         setActiveCategory(category);
-
-        // Construct the query string manually
-        // const query = new URLSearchParams(window.location.search);
-        // query.set('category_id', category);
-        //
-        // // Use router.replace instead of router.push to avoid full page reload
-        // router.replace(`${window.location.pathname}?${query.toString()}`);
+        setFormData({category_id:activeCategory})
     };
 
     useEffect(() => {
-        // Check if there's a category in the query parameters and set it as active
-        const queryParams = new URLSearchParams(window.location.search);
-        const category = queryParams.get('category');
-        if (category) {
-            setActiveCategory(category);
-        }
-    }, [categories]);
+        console.log(formData)
+
+    }, [formData]);
 
     return (
         <div className="row justify-content-center">
