@@ -38,8 +38,7 @@ function ListingSection({ initialListings, initialPage, lastPage }) {
     const params = { ...Object.fromEntries(searchParams.entries()), page: newPage.toString() };
     loadListings(params);
     const newSearchParams = new URLSearchParams(params);
-    // router.push(`?${newSearchParams.toString()}`, undefined, { shallow: true });
-    router.push(`?${newSearchParams.toString()}`, {scroll:false });
+    router.replace(`?${newSearchParams.toString()}`, {scroll:false });
   };
 
 

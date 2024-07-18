@@ -8,7 +8,7 @@ const Page = async () => {
 
     return (
         <>
-                <LocationForm countries={countries.countries} />
+            <LocationForm countries={countries.countries} />
             <section className="save-cont-btns-sec">
                 <div className="container">
                     <div className="row justify-content-between">

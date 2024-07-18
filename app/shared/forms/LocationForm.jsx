@@ -2,8 +2,7 @@
 import React, {useEffect, useState} from 'react'
 import {GetCitiesAction, GetStatesAction} from "@/app/shared/actions/locationAction";
 import useFormStore from "@/app/shared/stores/useFormStore";
-
-
+import {useRouter} from "next/navigation";
 
 const LocationForm = ({countries}) => {
     const [country, setCountry] = useState([])
@@ -12,6 +11,8 @@ const LocationForm = ({countries}) => {
 
     const { formData,setFormData } = useFormStore();
 
+    const router = useRouter()
+
     const onCountryChange = (e) => {
         setFormData({country_id:e.target.value})
         GetStatesAction(e.target.value).then((res) => {
@@ -19,21 +20,29 @@ const LocationForm = ({countries}) => {
         })
     }
     const onStateChange = (e) => {
-        console.log(e.target.value)
         setFormData({state_id:e.target.value})
         GetCitiesAction(e.target.value).then((res) => {
             setCity(res.cities)
         })
     }
-
     const onCityChange = (e) => {
-        console.log(e.target.value)
         setFormData({city_id:e.target.value})
     }
 
     useEffect(() => {
+        if(formData.category_id ===""){
+            router.push('/create-post/category')
+        }
         setCountry(countries)
+
+        // to be set with maps later
+        setFormData({longitude:0,latitude:0})
+
     }, []);
+    useEffect(() => {
+        console.log(formData)
+
+    }, [formData]);
 
 
     return (

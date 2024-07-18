@@ -15,8 +15,7 @@ function CategorySection({ categoryData }) {
     const params = new URLSearchParams(searchParams);
     params.set('category_id', id);
     params.set('page', '1');
-    // router.push(`?${params.toString()}`, undefined, { scroll: false });
-    router.push(`?${params.toString()}`,  { scroll: false });
+    router.replace(`?${params.toString()}`,  { scroll: false });
   };
 
   const scrollLeft = () => {

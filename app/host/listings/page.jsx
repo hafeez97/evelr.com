@@ -8,7 +8,7 @@ const Page = async () => {
     return (
         <div className="row">
             <div className="col-8 h-my-listing-side-border">
-                <Link href="/create-post/select-category"
+                <Link href="/create-post/category"
                     type="button"
                     className="h-my-listing-add-btn h-btn h-btn-secondary || mb-4"
                 >

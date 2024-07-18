@@ -4,20 +4,18 @@ import useFormStore from "@/app/shared/stores/useFormStore";
 
 const CategorySelection = ({ categories }) => {
     const [data, setData] = useState([]);
-
-    console.log(categories);
     const [activeCategory, setActiveCategory] = useState('');
-    const { formData,setFormData } = useFormStore();
+
+    const { setFormData } = useFormStore();
 
     const listingCategoryActive = (category) => {
         setActiveCategory(category);
-        setFormData({category_id:activeCategory})
+        setFormData({category_id:category})
     };
 
     useEffect(() => {
         setData(categories)
     }, []);
-
 
     return (
         <div className="row justify-content-center">

@@ -1,44 +1,36 @@
-"use client"
-import React, { useState } from 'react';
+'use client';
 
-const AboutPlaceForm = () => {
-    const [counts, setCounts] = useState({
-        adultsCount: 0,
-        teenagersCount: 0,
-        kidsCount: 0,
-        petsCount: 0,
-        bedroomsCount: 0,
-        bathroomsCount: 0,
-        diningroomsCount: 0,
-        livingroomsCount: 0,
-    });
+import React, {useEffect, useState} from 'react';
+import useFormStore from "@/app/shared/stores/useFormStore";
+
+const AboutPlaceForm = ({offerData}) => {
+    const [offers, setOffers] = useState([])
+    const {formData, setFormData} = useFormStore();
 
     const increment = (key) => {
-        setCounts((prevCounts) => ({
-            ...prevCounts,
-            [key]: prevCounts[key] + 1,
-        }));
+        setFormData({[key]: (formData[key] || 0) + 1});
     };
 
     const decrement = (key) => {
-        setCounts((prevCounts) => ({
-            ...prevCounts,
-            [key]: prevCounts[key] > 0 ? prevCounts[key] - 1 : 0,
-        }));
+        setFormData({[key]: (formData[key] || 0) > 0 ? (formData[key] || 0) - 1 : 0});
     };
 
-    const offerButtonActive = (e) => {
-        e.currentTarget.classList.toggle('active');
+    const offerButtonActive = (offerId) => {
+        const currentOffers = formData.place_offers || [];
+        if (currentOffers.includes(offerId)) {
+            setFormData({place_offers: currentOffers.filter((id) => id !== offerId)});
+        } else {
+            setFormData({place_offers: [...currentOffers, offerId]});
+        }
     };
 
-    const offers = [
-        'TV',
-        'Air Conditioning',
-        'Beach Access',
-        'Smoke Alarm',
-        'Carbon Alarm',
-        'Wifi',
-    ];
+    useEffect(() => {
+        setOffers(offerData)
+    }, [offerData]);
+
+    useEffect(() => {
+        console.log(formData);
+    }, [formData]);
 
     return (
         <section className="about-place-sec">
@@ -50,7 +42,7 @@ const AboutPlaceForm = () => {
                             <h2 className="sub-hd">Guests</h2>
                             <div className="listing-card-wrapper">
                                 {['Adults', 'Teenagers', 'Kids', 'Pets'].map((label, index) => {
-                                    const key = `${label.toLowerCase()}Count`;
+                                    const key = `${label.toLowerCase()}_count`;
                                     return (
                                         <div className="row justify-content-between align-items-center" key={index}>
                                             <div className="col-6">
@@ -59,11 +51,12 @@ const AboutPlaceForm = () => {
                                             <div className="col-6 d-flex justify-content-end">
                                                 <div className="counter">
                                                     <div className="counter-btn" onClick={() => decrement(key)}>
-                                                        <img src="../assets/images/minus.png" alt="" />
+                                                        <img src="../assets/images/minus.png" alt=""/>
                                                     </div>
-                                                    <input type="number" className="counter-input text-center" value={counts[key]} readOnly />
+                                                    <input type="number" className="counter-input text-center"
+                                                           value={formData[key] || 0} readOnly/>
                                                     <div className="counter-btn" onClick={() => increment(key)}>
-                                                        <img src="../assets/images/plus.png" alt="" />
+                                                        <img src="../assets/images/plus.png" alt=""/>
                                                     </div>
                                                 </div>
                                             </div>
@@ -75,7 +68,7 @@ const AboutPlaceForm = () => {
                             <h2 className="sub-hd">Rooms</h2>
                             <div className="listing-card-wrapper">
                                 {['Bedrooms', 'Bathrooms', 'Dining Room', 'Living Room'].map((label, index) => {
-                                    const key = `${label.toLowerCase().replace(' ', '')}Count`;
+                                    const key = `${label.toLowerCase().replace(' ', '')}_count`;
                                     return (
                                         <div className="row justify-content-between align-items-center" key={index}>
                                             <div className="col">
@@ -84,11 +77,13 @@ const AboutPlaceForm = () => {
                                             <div className="col d-flex justify-content-end">
                                                 <div className="counter">
                                                     <div className="counter-btn" onClick={() => decrement(key)}>
-                                                        <img src="../assets/images/minus.png" alt="" />
+                                                        <img src="../assets/images/minus.png" alt=""/>
                                                     </div>
-                                                    <input type="number" className="counter-input" value={counts[key]} readOnly />
+                                                    <input type="number" className="counter-input"
+                                                           value={formData[key] || 0}
+                                                           readOnly/>
                                                     <div className="counter-btn" onClick={() => increment(key)}>
-                                                        <img src="../assets/images/plus.png" alt="" />
+                                                        <img src="../assets/images/plus.png" alt=""/>
                                                     </div>
                                                 </div>
                                             </div>
@@ -100,11 +95,14 @@ const AboutPlaceForm = () => {
                         <div className="col-lg-6 ps-lg-5 mob-view-spacing">
                             <h2 className="sub-hd">What your place offers</h2>
                             <div className="row justify-content-center">
-                                {offers.map((offer, index) => (
-                                    <div className="col-6 col-lg-4 ps-0" key={index}>
+                                {offers.map((offer) => (
+                                    <div className="col-6 col-lg-4 ps-0" key={offer.id}>
                                         <a>
-                                            <div className="place-offer-btn" onClick={offerButtonActive}>
-                                                {offer}
+                                            <div
+                                                className={`place-offer-btn ${formData.place_offers?.includes(offer.id) ? 'offer-active' : ''}`}
+                                                onClick={() => offerButtonActive(offer.id)}
+                                            >
+                                                {offer.title}
                                             </div>
                                         </a>
                                     </div>

@@ -2,7 +2,7 @@ import React from "react";
 import ModalHOC from "@/app/shared/modals/ModalHOC";
 import {auth} from "@/auth"
 
-const RootLayout = async ({ children }) => {
+const CreatePostLayout = async ({ children }) => {
     return (
         <>
             <header className="header">
@@ -35,11 +35,8 @@ const RootLayout = async ({ children }) => {
                     </div>
                 </div>
             </footer>
-
-
-            {/*<Script src="/assets/js/custom.js" />*/}
         </>
     );
 };
 
-export default RootLayout
+export default CreatePostLayout
