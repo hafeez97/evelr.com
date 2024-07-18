@@ -4,6 +4,7 @@ import useFormStore from "@/app/shared/stores/useFormStore";
 
 
 const CategorySelection = ({ categories }) => {
+    console.log(categories)
     const [activeCategory, setActiveCategory] = useState('');
     const { formData,setFormData } = useFormStore();
 
@@ -12,16 +13,12 @@ const CategorySelection = ({ categories }) => {
         setFormData({category_id:activeCategory})
     };
 
-    useEffect(() => {
-        console.log(formData)
-
-    }, [formData]);
 
     return (
         <div className="row justify-content-center">
             {categories.map((cat) => (
                 <div className="col-lg-3 col-md-6" key={cat.id}>
-                    <a href="#">
+                    <a>
                         <div
                             className={`new-listing-cat-btn ${activeCategory === cat.id.toString() ? 'category-active' : ''}`}
                             onClick={() => listingCategoryActive(cat.id.toString())}

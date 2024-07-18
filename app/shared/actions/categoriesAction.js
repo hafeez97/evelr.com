@@ -6,7 +6,9 @@ export async function GetAllCategoriesAction() {
         const result = await GET(CONST.CATEGORIES.GET);
         // const data = JSON.parse(JSON.stringify(sampleData))
         const data = result.data.response.data;
-        return data.toString()
+        // return data.json();
+        return JSON.parse(JSON.stringify(data));
+
         // return  result.data.response.data ;
     } catch (error) {
         return { success: false, message: error };

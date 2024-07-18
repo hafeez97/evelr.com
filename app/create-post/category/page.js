@@ -6,6 +6,7 @@ import Link from "next/link";
 
 const Page = async () => {
    const data = await GetAllCategoriesAction();
+    // console.log(data)
     return (
        <>
            <section className="listing-category">
