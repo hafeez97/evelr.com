@@ -5,7 +5,7 @@ import {GetAllCategoriesAction} from "@/app/shared/actions/categoriesAction";
 import Link from "next/link";
 
 const Page = async () => {
-   // const data = await GetAllCategoriesAction();
+   const data = await GetAllCategoriesAction();
     return (
        <>
            <section className="listing-category">
@@ -13,7 +13,7 @@ const Page = async () => {
                    <h1 className="new-listing-heading primary-hd">
                        Which category describes your place?
                    </h1>
-                   {/*<CategorySelection categories={data}/>*/}
+                   <CategorySelection categories={data}/>
                    <CategoryCustomAddInput/>
                    <section className="save-cont-btns-sec">
                        <div className="container">
