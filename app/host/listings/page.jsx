@@ -27,9 +27,7 @@ const Page = async () => {
                                 address={post.address}
                                 rating={post.rating}
                             />
-                        </Link>
-
-                    )
+                        </Link>)
                     }
                 </ul>
             </div>

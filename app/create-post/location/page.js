@@ -8,9 +8,7 @@ const Page = async () => {
 
     return (
         <>
-            <Suspense fallback={<p>Loading</p>}>
                 <LocationForm countries={countries} />
-            </Suspense>
             <section className="save-cont-btns-sec">
                 <div className="container">
                     <div className="row justify-content-between">
