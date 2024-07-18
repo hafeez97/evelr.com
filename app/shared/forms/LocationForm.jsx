@@ -6,6 +6,7 @@ import useFormStore from "@/app/shared/stores/useFormStore";
 
 
 const LocationForm = ({countries}) => {
+    const [country, setCountry] = useState([])
     const [states, setStates] = useState([])
     const [city, setCity] = useState([])
 
@@ -30,9 +31,9 @@ const LocationForm = ({countries}) => {
         setFormData({city_id:e.target.value})
     }
 
-    // useEffect(() => {
-    //     console.log(formData)
-    // }, [ formData]);
+    useEffect(() => {
+        setCountry(countries)
+    }, []);
 
 
     return (
@@ -69,7 +70,7 @@ const LocationForm = ({countries}) => {
                                         <option value="0">
                                             Select Country
                                         </option>
-                                        {countries.map((country) => (
+                                        {country.map((country) => (
                                             <option key={country.id} value={country.id}>
                                                 {country.name}
                                             </option>
