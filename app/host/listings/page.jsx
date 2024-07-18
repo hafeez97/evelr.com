@@ -19,7 +19,7 @@ const Page = async () => {
                 </div>
                 <ul className="h-my-listings-list">
                     {/*<HostListingCard data={data}/>*/}
-                    {data.posts.map((post) =>
+                    {data && data.posts.map((post) =>
                         <Link className="nav-link mt-2" key={post.id} href={`/listing/${post.id}`}>
                             <HostListingCard
                                 id={post.id}
