@@ -1,6 +1,6 @@
 "use server"
 
-import { auth } from "@/auth";
+import {auth} from "@/auth";
 import CONST from "@/app/shared/utils/Constants";
 
 export const POST = async (url, formData = {}) => {
@@ -24,17 +24,16 @@ export const POST = async (url, formData = {}) => {
 
         if (!response.ok) {
             const errorData = isJSON ? await response.json() : await response.text();
-            throw new Error(JSON.stringify(isJSON ? errorData : { error: errorData }));
+            throw new Error(JSON.stringify(isJSON ? errorData : {error: errorData}));
         }
 
         const responseData = isJSON ? await response.json() : await response.text();
-        return { data: { response: responseData } };
+        return {data: {response: responseData}};
     } catch (error) {
-        const errorMessage = error.message ? JSON.parse(error.message).error.messages : "An unexpected error occurred.";
-        throw new Error(JSON.stringify({ messages: errorMessage }));
+        const errorMessage = error.message ? JSON.parse(error.message).error.message : "An unexpected error occurred.";
+        throw new Error(JSON.stringify({message: errorMessage}));
     }
 };
-
 
 
 export const GET = async (url, params = {}) => {
@@ -61,7 +60,7 @@ export const GET = async (url, params = {}) => {
 
         if (!response.ok) {
             const errorData = isJSON ? await response.json() : await response.text();
-            throw new Error(JSON.stringify(isJSON ? errorData : { error: errorData }));
+            throw new Error(JSON.stringify(isJSON ? errorData : {error: errorData}));
         }
 
         const responseData = isJSON ? await response.json() : await response.text();
@@ -69,7 +68,7 @@ export const GET = async (url, params = {}) => {
 
         // Extracting the nested data
         const nestedData = responseData?.data?.response?.data || responseData;
-        return { data: nestedData };
+        return {data: nestedData};
     } catch (error) {
         let errorMessage = "An unexpected error occurred.";
         try {
