@@ -4,12 +4,7 @@ import {GET, POST} from "@/app/shared/utils/Api";
 export async function GetAllCategoriesAction() {
     try {
         const result = await GET(CONST.CATEGORIES.GET);
-        // const data = JSON.parse(JSON.stringify(sampleData))
-        // const data = result.data.response.data;
-        // return data.json();
-        // return JSON.parse(JSON.stringify(data));
-
-        return  result.data.response.data ;
+        return  result.data.response ;
     } catch (error) {
         return { success: false, message: error };
     }

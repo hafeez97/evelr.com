@@ -13,11 +13,3 @@ export async function fetchCategories() {
     return categories.response.data;
 }
 
-export async function GetAllCategories() {
-    try {
-        const result = await GET(CONST.CATEGORIES.GET);
-        return  result.data.response.data ;
-    } catch (error) {
-        return { success: false, message: error };
-    }
-}

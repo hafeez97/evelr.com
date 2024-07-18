@@ -16,18 +16,18 @@ const CategorySelection = ({ categories }) => {
 
     return (
         <div className="row justify-content-center">
-            {categories.map((cat) => (
-                <div className="col-lg-3 col-md-6" key={cat.id}>
-                    <a>
-                        <div
-                            className={`new-listing-cat-btn ${activeCategory === cat.id.toString() ? 'category-active' : ''}`}
-                            onClick={() => listingCategoryActive(cat.id.toString())}
-                        >
-                            {cat.title}
-                        </div>
-                    </a>
-                </div>
-            ))}
+            {/*{categories.map((cat) => (*/}
+            {/*    <div className="col-lg-3 col-md-6" key={cat.id}>*/}
+            {/*        <a>*/}
+            {/*            <div*/}
+            {/*                className={`new-listing-cat-btn ${activeCategory === cat.id.toString() ? 'category-active' : ''}`}*/}
+            {/*                onClick={() => listingCategoryActive(cat.id.toString())}*/}
+            {/*            >*/}
+            {/*                {cat.title}*/}
+            {/*            </div>*/}
+            {/*        </a>*/}
+            {/*    </div>*/}
+            {/*))}*/}
         </div>
     );
 };

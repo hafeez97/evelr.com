@@ -3,12 +3,11 @@ import CategorySelection from "@/app/shared/components/CategorySelection";
 import CategoryCustomAddInput from "@/app/shared/components/CategoryCustomAddInput";
 import {GetAllCategoriesAction} from "@/app/shared/actions/categoriesAction";
 import Link from "next/link";
-import {GetAllCategories} from "@/app/shared/services/CategoryService";
 
 const Page = async () => {
-   // const data = await GetAllCategoriesAction();
-   const server = await GetAllCategories()
-    const serverData = JSON.parse(JSON.stringify(server))
+   const data = await GetAllCategoriesAction();
+   // const categoryData = data.data
+
 
     return (
        <>
@@ -17,7 +16,7 @@ const Page = async () => {
                    <h1 className="new-listing-heading primary-hd">
                        Which category describes your place?
                    </h1>
-                   <CategorySelection categories={serverData}/>
+                   <CategorySelection categories={data.data}/>
                    <CategoryCustomAddInput/>
                    <section className="save-cont-btns-sec">
                        <div className="container">
