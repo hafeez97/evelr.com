@@ -1,27 +1,38 @@
 "use client"
 import React, {useEffect, useState} from 'react'
-import {GetStatesAction} from "@/app/shared/actions/locationAction";
+import {GetCitiesAction, GetStatesAction} from "@/app/shared/actions/locationAction";
+import useFormStore from "@/app/shared/stores/useFormStore";
+
 
 
 const LocationForm = ({countries}) => {
-    const [countryId, setCountryId] = useState()
     const [states, setStates] = useState([])
-    const [city, setCity] = useState()
+    const [city, setCity] = useState([])
 
-    useEffect(() => {
-        console.log(countryId)
-    }, [countryId  ]);
+    const { formData,setFormData } = useFormStore();
 
     const onCountryChange = (e) => {
-        setCountryId(e.target.value)
+        setFormData({country_id:e.target.value})
         GetStatesAction(e.target.value).then((res) => {
             setStates(res.states)
-            console.log(res.states)
         })
     }
     const onStateChange = (e) => {
         console.log(e.target.value)
+        setFormData({state_id:e.target.value})
+        GetCitiesAction(e.target.value).then((res) => {
+            setCity(res.cities)
+        })
     }
+
+    const onCityChange = (e) => {
+        console.log(e.target.value)
+        setFormData({city_id:e.target.value})
+    }
+
+    // useEffect(() => {
+    //     console.log(formData)
+    // }, [ formData]);
 
 
     return (
@@ -39,6 +50,7 @@ const LocationForm = ({countries}) => {
                                     className="form-control"
                                     id="address"
                                     placeholder="Address"
+                                    onChange={(e) => setFormData({address:e.target.value})}
                                 />
                             </div>
                             <div className="col-12 mt-4">
@@ -47,11 +59,16 @@ const LocationForm = ({countries}) => {
                                     className="form-control"
                                     id="alternate_address"
                                     placeholder="Alternate Address (if applicable)"
+                                    onChange={(e) => setFormData({alternative_address:e.target.value})}
                                 />
                             </div>
                             <div className="col-12 mt-4">
                                 <div className="select-wrapper">
-                                    <select id="country_id" defaultValue="0" className="form-select select-input" onChange={onCountryChange}>
+                                    <select id="country_id" defaultValue="0" className="form-select select-input"
+                                            onChange={onCountryChange}>
+                                        <option value="0">
+                                            Select Country
+                                        </option>
                                         {countries.countries.map((country) => (
                                             <option key={country.id} value={country.id}>
                                                 {country.name}
@@ -63,7 +80,11 @@ const LocationForm = ({countries}) => {
                             </div>
                             <div className="col-12 mt-4">
                                 <div id="stateSelect" className="select-wrapper">
-                                    <select className="form-select select-input" defaultValue="0" onChange={onStateChange} disabled={states.length === 0}>
+                                    <select className="form-select select-input" defaultValue="0"
+                                            onChange={onStateChange} disabled={states.length === 0}>
+                                        <option value="0">
+                                            Select State
+                                        </option>
                                         {states.map((state) => (
                                             <option key={state.id} value={state.id}>
                                                 {state.name}
@@ -75,10 +96,16 @@ const LocationForm = ({countries}) => {
                             </div>
                             <div className="col-12 mt-4">
                                 <div className="select-wrapper">
-                                    <select id="city_id" className="form-select select-input">
-                                        <option selected="" disabled="">
-                                            City
+                                    <select defaultValue="0" id="city_id" className="form-select select-input"
+                                            disabled={city.length === 0} onChange={onCityChange}>
+                                        <option  value="0">
+                                            Select City
                                         </option>
+                                        {city.map((city) => (
+                                            <option key={city.id} value={city.id}>
+                                                {city.name}
+                                            </option>
+                                        ))}
 
                                     </select>
                                     <span className="custom-arrow"/>
@@ -90,6 +117,7 @@ const LocationForm = ({countries}) => {
                                     className="form-control"
                                     id="Postal_code"
                                     placeholder="Postal Code"
+                                    onChange={(e) => setFormData({postal_code:e.target.value})}
                                 />
                             </div>
                         </form>
