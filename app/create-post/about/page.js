@@ -6,7 +6,7 @@ import {off} from "next/dist/client/components/react-dev-overlay/pages/bus";
 const Page = async () => {
     const offerData = await GetAllPlaceOffersAction()
     return (
-        <AboutPlaceForm offerData={offerData}/>
+        <AboutPlaceForm offerData={offerData.data}/>
     )
 }
 export default Page

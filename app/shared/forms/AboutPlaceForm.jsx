@@ -26,11 +26,7 @@ const AboutPlaceForm = ({offerData}) => {
 
     useEffect(() => {
         setOffers(offerData)
-    }, [offerData]);
-
-    useEffect(() => {
-        console.log(formData);
-    }, [formData]);
+    }, []);
 
     return (
         <section className="about-place-sec">
