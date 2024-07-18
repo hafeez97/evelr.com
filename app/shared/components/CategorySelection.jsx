@@ -2,9 +2,10 @@
 import React, { useEffect, useState } from 'react';
 import useFormStore from "@/app/shared/stores/useFormStore";
 
-
 const CategorySelection = ({ categories }) => {
-    console.log(categories)
+    const [data, setData] = useState([]);
+
+    console.log(categories);
     const [activeCategory, setActiveCategory] = useState('');
     const { formData,setFormData } = useFormStore();
 
@@ -13,10 +14,14 @@ const CategorySelection = ({ categories }) => {
         setFormData({category_id:activeCategory})
     };
 
+    useEffect(() => {
+        setData(categories)
+    }, []);
+
 
     return (
         <div className="row justify-content-center">
-            {categories.map((cat) => (
+            {data.map((cat) => (
                 <div className="col-lg-3 col-md-6" key={cat.id}>
                     <a>
                         <div

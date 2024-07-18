@@ -1,4 +1,4 @@
-import React from "react";
+import React, {Suspense} from "react";
 import CategorySelection from "@/app/shared/components/CategorySelection";
 import CategoryCustomAddInput from "@/app/shared/components/CategoryCustomAddInput";
 import {GetAllCategoriesAction} from "@/app/shared/actions/categoriesAction";
@@ -14,7 +14,10 @@ const Page = async () => {
                    <h1 className="new-listing-heading primary-hd">
                        Which category describes your place?
                    </h1>
-                   <CategorySelection categories={data.data}/>
+                   <Suspense fallback={<div>Loading...</div>}>
+                       <CategorySelection categories={data.data}/>
+                   </Suspense>
+
                    <CategoryCustomAddInput/>
                    <section className="save-cont-btns-sec">
                        <div className="container">
