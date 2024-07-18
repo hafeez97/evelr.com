@@ -6,8 +6,6 @@ import Link from "next/link";
 
 const Page = async () => {
    const data = await GetAllCategoriesAction();
-   // const categoryData = data.data
-
 
     return (
        <>
