@@ -1,4 +1,5 @@
 import CONST from "@/app/shared/utils/Constants";
+import {GET, POST} from "@/app/shared/utils/Api";
 
 export async function fetchCategories() {
     const res = await fetch(`${CONST.BASE_URL}${CONST.CATEGORIES.GET}`, {
@@ -10,4 +11,13 @@ export async function fetchCategories() {
     }
     const categories = await res.json();
     return categories.response.data;
+}
+
+export async function GetAllCategories() {
+    try {
+        const result = await GET(CONST.CATEGORIES.GET);
+        return  result.data.response.data ;
+    } catch (error) {
+        return { success: false, message: error };
+    }
 }
