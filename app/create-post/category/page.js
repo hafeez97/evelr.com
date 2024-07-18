@@ -8,7 +8,8 @@ import {GetAllCategories} from "@/app/shared/services/CategoryService";
 const Page = async () => {
    // const data = await GetAllCategoriesAction();
    const server = await GetAllCategories()
-    // console.log(data)
+    const serverData = JSON.parse(JSON.stringify(server))
+
     return (
        <>
            <section className="listing-category">
@@ -16,7 +17,7 @@ const Page = async () => {
                    <h1 className="new-listing-heading primary-hd">
                        Which category describes your place?
                    </h1>
-                   <CategorySelection categories={server}/>
+                   <CategorySelection categories={serverData}/>
                    <CategoryCustomAddInput/>
                    <section className="save-cont-btns-sec">
                        <div className="container">
