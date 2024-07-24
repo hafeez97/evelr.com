@@ -3,7 +3,8 @@ const CONST = {
     MEDIA_URL: "https://testcodex.com/elevr-uploads/",
     AUTH: {
         LOGIN: "login",
-        REGISTER: "register"
+        REGISTER: "register",
+        OTP_RESEND: "user/resend-otp",
     },
     LISTING: {
         GET: "post?",
@@ -15,7 +16,8 @@ const CONST = {
             ADD: "categories/create"
         },
     HOST: {
-        GET_POSTS: "post/owner-post/detail"
+        GET_POSTS: "post/owner-post/detail",
+        ADD_POST: "post/create"
     },
     LOCATION: {
         GET_COUNTRIES: "location/country",

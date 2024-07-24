@@ -1,26 +1,38 @@
 'use client';
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {CreateMediaAction} from "@/app/shared/actions/mediaAction";
+import CONST from "@/app/shared/utils/Constants";
+import useFormStore from "@/app/shared/stores/useFormStore";
 
 const PhotosUploadForm = () => {
-    const [selectedFiles, setSelectedFiles] = useState([]);
+    const [loading, setLoading] = useState(false);
+    const {setFormData, formData} = useFormStore();
 
     const handleImageUpload = async (e) => {
+        setLoading(true);
         const files = Array.from(e.target.files);
-        setSelectedFiles(files);
+        let newUploadedMedia = [];
 
-        const formData = new FormData();
-        files.forEach((file) => {
-            formData.append('media', file);
-        });
-        formData.append('type', 'image');
-        console.log(formData)
+        for (const file of files) {
+            const formDataData = new FormData();
+            formDataData.append('media', file);
+            formDataData.append('type', 'image');
 
-        await CreateMediaAction(formData).then((response) => {
-            console.log(response.response);
-        })
+            try {
+                const response = await CreateMediaAction(formDataData);
+                newUploadedMedia.push(response.data.media);
+            } catch (error) {
+                console.error(`Error uploading ${file.name}:`, error);
+            }
+        }
+
+        setFormData({'media': [...formData.media, ...newUploadedMedia]});
+        setLoading(false);
     };
 
+    useEffect(() => {
+        console.log(formData)
+    }, [formData]);
     return (
         <section className="upload-images">
             <div className="container">
@@ -29,12 +41,27 @@ const PhotosUploadForm = () => {
                 </h1>
                 <div className="col-12">
                     <div className="images-box">
-                        <img src="/assets/images/image-placeholder.png" alt=""/>
+                        {formData.media && formData.media.length > 0 ? (
+                            <div className="uploaded-images flex-row">
+                                {formData.media.map((media, index) => (
+                                    <img
+                                        className="m-3"
+                                        height={150}
+                                        width={150}
+                                        key={index}
+                                        src={`${CONST.MEDIA_URL}${media}`}
+                                        alt=""
+                                    />
+                                ))}
+                            </div>
+                        ) : (
+                            <img src="/assets/images/image-placeholder.png" alt=""/>
+                        )}
                         <p>Upload at least 5 photos</p>
                         <div className="col-6 col-md-4 col-lg-3 col-xl-2 d-flex justify-content-end">
                             <label className="custom-file-upload upload-btn">
                                 <input type="file" accept="image/*" multiple onChange={handleImageUpload}/>
-                                Upload
+                                {loading ? 'Uploading...' : 'Upload'}
                             </label>
                         </div>
                     </div>

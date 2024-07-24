@@ -1,11 +1,11 @@
 import React from 'react'
-import PhotosUploadForm from "@/app/shared/forms/PhotosUploadForm";
+import DescriptionForm from "@/app/shared/forms/DescriptionForm";
 import Link from "next/link";
 
 const Page = () => {
     return (
         <>
-            <PhotosUploadForm/>
+            <DescriptionForm/>
             <section className="save-cont-btns-sec">
                 <div className="container">
                     <div className="row justify-content-between">
@@ -16,7 +16,7 @@ const Page = () => {
                         </div>
                         <div className="col-sm-6 col-md-5 col-lg-4 col-xl-3 d-flex justify-content-end">
                             <Link
-                                href="/create-post/description"
+                                href="/create-post/guest"
                                 className="continue-btn"
                             >
                                 Continue
