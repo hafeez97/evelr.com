@@ -38,7 +38,8 @@ const NavAuthButtons = ({session}) => {
                     <li className="mt-2">
                         <a className="dropdown-item d-flex align-items-center justify-content-between" href="#">
                       <span>
-                        <img style={{height: '56px', width: '56px'}} src="/assets/images/user.png" alt="user profile image"/>
+                        <img style={{height: '56px', width: '56px'}} src="/assets/images/user.png"
+                             alt="user profile image"/>
                       </span>
                             <span style={{marginLeft: '12px'}}>{session.user.full_name}</span>
                         </a>
@@ -48,11 +49,12 @@ const NavAuthButtons = ({session}) => {
                             Reservation</Link>
                     </li>
                     <li className="mt-3">
-                        <Link className="dropdown-item d-flex align-items-center" href="/personal_information">Personal
+                        <Link className="dropdown-item d-flex align-items-center" href="/personal-information">Personal
                             Information</Link>
                     </li>
                     <li className="mt-3">
-                        <a className="dropdown-item d-flex align-items-center" href="#">Account Settings</a>
+                        <Link className="dropdown-item d-flex align-items-center" href="/account-settings">Account
+                            Settings</Link>
                     </li>
                     <li className="mt-3">
                         <Link className="dropdown-item d-flex align-items-center" href="/gift_card">Gift Cards</Link>
@@ -61,7 +63,7 @@ const NavAuthButtons = ({session}) => {
                         <Link className="dropdown-item d-flex align-items-center" href="/help_center">Help Center</Link>
                     </li>
                     <li className="mt-3 mb-2">
-                        <button className="dropdown-item d-flex align-items-center" onClick={()=>LogoutAction()}>
+                        <button className="dropdown-item d-flex align-items-center" onClick={() => LogoutAction()}>
                             <span style={{color: 'var(--bs-primary-color)', fontWeight: '600'}}>Log Out</span>
                         </button>
                     </li>

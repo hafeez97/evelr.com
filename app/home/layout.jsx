@@ -1,21 +1,21 @@
 import React from "react";
 import Navigation from "@/app/shared/components/Navigation";
-import Script from 'next/script'
 import ModalHOC from "@/app/shared/modals/ModalHOC";
 import {auth} from "@/auth"
+import Footer from "@/app/shared/components/Footer";
 
-const HomeLayout = async ({ children }) => {
+const HomeLayout = async ({children}) => {
     const session = await auth()
 
     return (
         <>
             <header>
-                    <Navigation session={session} />
+                <Navigation session={session}/>
             </header>
             <main>
                 <ModalHOC/>
                 {children}</main>
-            <footer>Default Footer</footer>
+            <Footer/>
             {/*<Script src="/assets/js/custom.js" />*/}
         </>
     );
