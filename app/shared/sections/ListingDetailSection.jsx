@@ -5,7 +5,7 @@ import useModalStore from "@/app/shared/stores/useModalStore";
 import {useRouter} from "next/navigation";
 
 
-const ListingDetailSection = ({ detailData, session }) => {
+const ListingDetailSection = ({detailData, session}) => {
     const [selectedDates, setSelectedDates] = useState([]);
     const [counters, setCounters] = useState({
         adultsCount: 0,
@@ -18,7 +18,7 @@ const ListingDetailSection = ({ detailData, session }) => {
 
     const postDetails = detailData;
     console.log(postDetails)
-    const { openSignInModal } = useModalStore();
+    const {openSignInModal} = useModalStore();
 
     const increment = (type) => {
         setCounters(prevCounters => ({
@@ -64,7 +64,7 @@ const ListingDetailSection = ({ detailData, session }) => {
                         <h1 className="new-listing-heading primary-hd">
                             {postDetails?.title}
                         </h1>
-                        <span style={{ fontSize: '18px' }}>
+                        <span style={{fontSize: '18px'}}>
                             <img
                                 className="rate-icon"
                                 style={{
@@ -76,11 +76,11 @@ const ListingDetailSection = ({ detailData, session }) => {
                         </span>
                     </div>
 
-                    <div className="row" style={{ position: 'relative' }}>
+                    <div className="row" style={{position: 'relative'}}>
                         <div className="col-lg-7">
                             <div
                                 className="appartment-details-hero-img"
-                                style={{ backgroundImage: "url('/assets/images/listing.jpg')" }}
+                                style={{backgroundImage: "url('/assets/images/listing.jpg')"}}
                             ></div>
                         </div>
                         <div className="col-lg-5 d-none d-lg-block">
@@ -104,7 +104,7 @@ const ListingDetailSection = ({ detailData, session }) => {
                         </div>
                         <div className="apartment-details-grid-btn">
                             <div className="d-flex flex-row">
-                                <img src="/assets/icons/grid-3x3-gap-fill.svg" width="30" alt="" />
+                                <img src="/assets/icons/grid-3x3-gap-fill.svg" width="30" alt=""/>
                                 <span className="ms-3">See all photos</span>
                             </div>
                         </div>
@@ -116,13 +116,13 @@ const ListingDetailSection = ({ detailData, session }) => {
                 <div className="container">
                     <div className="row">
                         <div className="col-lg-7 pe-lg-3">
-                            <h2 className="sub-hd" style={{ marginTop: '40px', fontSize: '38px' }}>
+                            <h2 className="sub-hd" style={{marginTop: '40px', fontSize: '38px'}}>
                                 Salam Towers in Malir
                             </h2>
-                            <h3 style={{ marginTop: '60px', fontSize: '30px', fontWeight: '500' }}>
+                            <h3 style={{marginTop: '60px', fontSize: '30px', fontWeight: '500'}}>
                                 About This Apartment
                             </h3>
-                            <p style={{ marginTop: '15px', fontSize: '21px' }}>
+                            <p style={{marginTop: '15px', fontSize: '21px'}}>
                                 {postDetails?.description}
                             </p>
                             <div
@@ -134,62 +134,77 @@ const ListingDetailSection = ({ detailData, session }) => {
                                     borderColor: 'transparent',
                                 }}
                             >
-                                <h3 style={{ fontSize: '30px', fontWeight: '500' }}>What this Apartment Offers?</h3>
+                                <h3 style={{fontSize: '30px', fontWeight: '500'}}>What this Apartment Offers?</h3>
                                 <div className="row">
                                     {postDetails?.place_offer?.map((offer) => (
-                                        <div className="col-6" style={{ fontSize: '22px', marginTop: '4px' }} key={offer.id}>
+                                        <div className="col-6" style={{fontSize: '22px', marginTop: '4px'}}
+                                             key={offer.id}>
                                             {offer.title}
                                         </div>
                                     ))}
                                 </div>
                             </div>
-                            <h3 style={{ marginTop: '35px', fontSize: '30px', fontWeight: '600' }}>Where you will be</h3>
-                            <p style={{ marginTop: '0px', fontSize: '22px', fontWeight: '500' }}>{postDetails?.address}</p>
+                            <h3 style={{marginTop: '35px', fontSize: '30px', fontWeight: '600'}}>Where you will be</h3>
+                            <p style={{
+                                marginTop: '0px',
+                                fontSize: '22px',
+                                fontWeight: '500'
+                            }}>{postDetails?.address}</p>
 
-                            <div style={{ height: '241px', marginTop: '26px' }}>
-                                <img src="/assets/images/map.png" style={{ height: '100%', width: '100%' }} alt="map-location" />
+                            <div style={{height: '241px', marginTop: '26px'}}>
+                                <img src="/assets/images/map.png" style={{height: '100%', width: '100%'}}
+                                     alt="map-location"/>
                             </div>
 
                             <div
                                 className="d-flex align-items-center justify-content-between"
-                                style={{ marginTop: '35px' }}
+                                style={{marginTop: '35px'}}
                             >
                                 <div className="d-flex align-items-center">
                                     <img
                                         className="rounded-circle"
-                                        style={{ height: '68px', width: '68px' }}
+                                        style={{height: '68px', width: '68px'}}
                                         src="/assets/images/user-profile.svg"
                                         alt="user profile image"
                                     />
-                                    <span style={{ fontSize: '20px', marginLeft: '12px' }}>
-                                        Listed by <span style={{ fontWeight: '600' }}>{postDetails?.user?.full_name}</span>
-                                        <span style={{ fontSize: '14px', display: 'block' }}>1 year listing</span>
+                                    <span style={{fontSize: '20px', marginLeft: '12px'}}>
+                                        Listed by <span
+                                        style={{fontWeight: '600'}}>{postDetails?.user?.full_name}</span>
+                                        <span style={{fontSize: '14px', display: 'block'}}>1 year listing</span>
                                     </span>
                                 </div>
 
                                 <button className="primary-button row_btns">Contact</button>
                             </div>
                         </div>
-                        <hr className="d-lg-none" style={{ marginTop: '54px' }} />
+                        <hr className="d-lg-none" style={{marginTop: '54px'}}/>
                         <div
                             className="col-lg-5 mob-view-spacing ps-lg-3"
-                            style={{ marginTop: '40px' }}
+                            style={{marginTop: '40px'}}
                         >
                             <div className="d-flex align-items-center justify-content-between">
                                 <div>
-                                    <span style={{ fontSize: '30px', fontWeight: '600' }}>Rs{postDetails?.rate} per night</span>
+                                    <span style={{
+                                        fontSize: '30px',
+                                        fontWeight: '600'
+                                    }}>Rs{postDetails?.rate} per night</span>
                                 </div>
                                 <div>
-                                    <button className="primary-button row_btns" onClick={handleBookNow}>Book Now</button>
+                                    <button className="primary-button row_btns" onClick={handleBookNow}>Book Now
+                                    </button>
                                 </div>
                             </div>
-                            <h3 style={{ marginTop: '50px', fontSize: '30px', fontWeight: '600' }}>Select Check In Date</h3>
-                            <p style={{ marginTop: '0px', fontSize: '22px', fontWeight: '500' }}>Add your dates for exact pricing</p>
+                            <h3 style={{marginTop: '50px', fontSize: '30px', fontWeight: '600'}}>Select Check In
+                                Date</h3>
+                            <p style={{marginTop: '0px', fontSize: '22px', fontWeight: '500'}}>Add your dates for exact
+                                pricing</p>
                             <div className="apartment-details-calender">
-                                <DateRangeCalender selectedDates={selectedDates} setSelectedDates={setSelectedDates} />
+                                <DateRangeCalender selectedDates={selectedDates} setSelectedDates={setSelectedDates}/>
                             </div>
-                            <h3 style={{ marginTop: '35px', fontSize: '30px', fontWeight: '600' }}>Select No. of person</h3>
-                            <p style={{ marginTop: '0px', fontSize: '22px', fontWeight: '500' }}>Input how many person will be staying</p>
+                            <h3 style={{marginTop: '35px', fontSize: '30px', fontWeight: '600'}}>Select No. of
+                                person</h3>
+                            <p style={{marginTop: '0px', fontSize: '22px', fontWeight: '500'}}>Input how many person
+                                will be staying</p>
                             <div
                                 className="card-wrapper"
                                 style={{
@@ -206,7 +221,7 @@ const ListingDetailSection = ({ detailData, session }) => {
                                         <div className="col-6 d-flex justify-content-end">
                                             <div className="counter">
                                                 <div className="counter-btn" onClick={() => decrement(type)}>
-                                                    <img src="/assets/images/minus.png" alt="" />
+                                                    <img src="/assets/images/minus.png" alt=""/>
                                                 </div>
                                                 <input
                                                     type="number"
@@ -215,7 +230,7 @@ const ListingDetailSection = ({ detailData, session }) => {
                                                     readOnly
                                                 />
                                                 <div className="counter-btn" onClick={() => increment(type)}>
-                                                    <img src="/assets/images/plus.png" alt="" />
+                                                    <img src="/assets/images/plus.png" alt=""/>
                                                 </div>
                                             </div>
                                         </div>
@@ -224,7 +239,7 @@ const ListingDetailSection = ({ detailData, session }) => {
                             </div>
                         </div>
                     </div>
-                    <hr style={{ marginTop: '54px' }} />
+                    <hr style={{marginTop: '54px'}}/>
                 </div>
             </section>
         </>

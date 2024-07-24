@@ -1,11 +1,11 @@
 // app/middleware.js
-import { NextResponse } from 'next/server';
+import {NextResponse} from 'next/server';
 
 export function middleware(request) {
-    const { pathname } = request.nextUrl;
+    const {pathname} = request.nextUrl;
 
     // Exclude _next and public assets
-    if (pathname.startsWith('/_next') || pathname.startsWith('/assets') || pathname.startsWith('/favicon.ico')) {
+    if (pathname.startsWith('/_next') || pathname.startsWith('/assets') || pathname.startsWith('/favicon-x.ico')) {
         return NextResponse.next();
     }
 
