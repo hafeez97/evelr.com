@@ -10,8 +10,13 @@ import FormSubmitButton from "@/app/shared/components/FormSubmitButton";
 
 
 function SignUpModal() {
+
+    const initialState = {
+    message: '', success: false,
+    }
+
     const {isSignUpOpen, closeSignUpModal} = useModalStore()
-    const [state, formAction] = useFormState( SignUpAction , '')
+    const [state, formAction] = useFormState( SignUpAction , initialState)
 
     useEffect(() => {
         console.log(state)

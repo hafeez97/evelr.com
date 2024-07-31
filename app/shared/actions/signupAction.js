@@ -8,6 +8,7 @@ export async function SignUpAction(prevState ,formData){
         const result = await POST(CONST.AUTH.REGISTER, formData);
         return { success: true, message: "Sign Up Successful", data: result.data.response };
     } catch (error) {
-        return { success: false, message: JSON.parse(error.message).messages };
+        console.log(error.message)
+        return { success: false, message: error.message};
     }
 }
